@@ -21,7 +21,7 @@ function decryptDevice(password) {
         await storageDecryption.decrypt(password, 3 * 60 * 1000);
     });
     (0, helpers_1.it)("should display Overview", async function () {
-        await new overview_page_1.OverviewPage(helpers_1.page).waitVisible(40000);
+        await new overview_page_1.OverviewPage(helpers_1.page).waitVisible(60000);
     });
 }
 

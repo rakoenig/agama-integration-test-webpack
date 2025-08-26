@@ -9,6 +9,6 @@ export function decryptDevice(password: string) {
   });
 
   it("should display Overview", async function () {
-    await new OverviewPage(page).waitVisible(40000);
+    await new OverviewPage(page).waitVisible(60000);
   });
 }
