@@ -19,7 +19,7 @@ export function selectADesktop(desktop: string) {
     await software.selectADesktop();
     await waitUntilOverlaySettled(() => softwareDesktopSelectionPage.select(desktop));
     await waitUntilOverlaySettled(() => softwareDesktopSelectionPage.accept());
-    await header.goToInstallation();
+    await waitUntilOverlaySettled(() => header.goToInstallation());
   });
 }
 

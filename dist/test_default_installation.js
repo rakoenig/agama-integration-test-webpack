@@ -855,7 +855,7 @@ function selectADesktop(desktop) {
         await software.selectADesktop();
         await (0, helpers_1.waitUntilOverlaySettled)(() => softwareDesktopSelectionPage.select(desktop));
         await (0, helpers_1.waitUntilOverlaySettled)(() => softwareDesktopSelectionPage.accept());
-        await header.goToInstallation();
+        await (0, helpers_1.waitUntilOverlaySettled)(() => header.goToInstallation());
     });
 }
 function changePatterns(patterns) {
