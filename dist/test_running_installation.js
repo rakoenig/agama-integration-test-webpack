@@ -205,8 +205,10 @@ function enableEncryption(password) {
         const encryptionSettings = new encryption_settings_page_1.EncryptionSettingsPage(helpers_1.page);
         const overview = new overview_page_1.OverviewPage(helpers_1.page);
         const header = new header_page_1.HeaderPage(helpers_1.page);
-        await overview.goToStorage();
-        await storageSettings.selectEncryption();
+        await (0, helpers_1.waitUntilOverlaySettled)(() => overview.goToStorage());
+        await storageSettings.ensureStorageSettingsPresent();
+        await (0, helpers_1.waitUntilOverlaySettled)(() => storageSettings.selectEncryption());
+        await storageSettings.ensureChangeEncryptionPresent();
         await storageSettings.changeEncryption();
         await encryptionSettings.markEncryptTheSystem();
         await encryptionSettings.fillPassword(password);
@@ -3171,6 +3173,9 @@ class StorageSettingsPage {
     }
     async selectEncryption() {
         await this.encryptionTab().click();
+    }
+    async ensureChangeEncryptionPresent() {
+        await this.changeEncryptionLink().wait();
     }
     async changeEncryption() {
         await this.changeEncryptionLink().click();

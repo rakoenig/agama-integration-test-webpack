@@ -85,6 +85,10 @@ export class StorageSettingsPage {
     await this.encryptionTab().click();
   }
 
+  async ensureChangeEncryptionPresent() {
+    await this.changeEncryptionLink().wait();
+  }
+
   async changeEncryption() {
     await this.changeEncryptionLink().click();
   }

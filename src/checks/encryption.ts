@@ -1,4 +1,4 @@
-import { it, page, getTextContent } from "../lib/helpers";
+import { it, page, getTextContent, waitUntilOverlaySettled } from "../lib/helpers";
 import { OverviewPage } from "../pages/overview_page";
 import { EncryptionSettingsPage } from "../pages/encryption_settings_page";
 import { SidebarPage } from "../pages/sidebar_page";
@@ -13,8 +13,10 @@ export function enableEncryption(password: string) {
     const overview = new OverviewPage(page);
     const header = new HeaderPage(page);
 
-    await overview.goToStorage();
-    await storageSettings.selectEncryption();
+    await waitUntilOverlaySettled(() => overview.goToStorage());
+    await storageSettings.ensureStorageSettingsPresent();
+    await waitUntilOverlaySettled(() => storageSettings.selectEncryption());
+    await storageSettings.ensureChangeEncryptionPresent();
     await storageSettings.changeEncryption();
     await encryptionSettings.markEncryptTheSystem();
     await encryptionSettings.fillPassword(password);
